@@ -1,8 +1,8 @@
-import {Application, Router} from "express";
+import { Application, Router } from "express";
 
 interface BaseApplication {
-    app: Application
-    router: Router
+  app: Application;
+  router: Router;
 }
 
-export default BaseApplication
+export default BaseApplication;

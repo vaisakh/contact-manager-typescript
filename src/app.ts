@@ -1,38 +1,36 @@
-import express, {Express, Router} from "express";
-import BaseApplication from './interfaces/app.interface'
+import express, { Express, Router } from "express";
+import BaseApplication from "./interfaces/app.interface";
 import Controller from "./interfaces/controller.interface";
 
-class App implements BaseApplication{
+class App implements BaseApplication {
+  readonly app: Express;
+  readonly router: Router;
 
-    readonly app: Express
-    readonly router: Router
+  constructor(private controllers: Controller[]) {
+    this.app = express();
+    this.router = express.Router();
 
-    constructor(private controllers: Controller[]) {
-        this.app = express()
-        this.router = express.Router()
+u    this.init();
+  }
 
-        this.init()
-    }
+  public getApp(): Express {
+    return this.app;
+  }
 
-    public getApp(): Express {
-        return this.app;
-    }
+  private init() {
+    this.middleware();
+    this.routes();
+  }
 
-    private init() {
-        this.middleware()
-        this.routes()
-    }
+  private middleware() {
+    this.app.use(express.json());
+  }
 
-    private middleware() {
-        this.app.use(express.json())
-    }
-
-    private routes() {
-        this.controllers.forEach((controller) => {
-            this.app.use('/', controller.router)
-        })
-    }
-
+  private routes() {
+    this.controllers.forEach((controller) => {
+      this.app.use("/", controller.router);
+    });
+  }
 }
 
-export default App
+export default App;

@@ -1,30 +1,28 @@
-import App from './app'
-import {Application} from "express";
-import BaseServer from './interfaces/server.interface'
+import App from "./app";
+import { Application } from "express";
+import BaseServer from "./interfaces/server.interface";
 import ContactController from "./controller/contact.controller";
 
 class Server implements BaseServer {
-    readonly app: Application
+  readonly app: Application;
 
-    constructor(app: App) {
-        this.app = app.getApp()
-    }
+  constructor(app: App) {
+    this.app = app.getApp();
+  }
 
-    start() {
-        this.listen()
-    }
+  start() {
+    this.listen();
+  }
 
-    stop() {}
+  stop() {}
 
-    listen() {
-        this.app.listen('3000', () => console.log('server started at 3000'))
-    }
+  listen() {
+    this.app.listen("3000", () => console.log("server started at 3000"));
+  }
 }
 
-let app: App = new App([
-    new ContactController()
-])
+let app: App = new App([new ContactController()]);
 
-let server: Server = new Server(app)
+let server: Server = new Server(app);
 
-server.listen()
+server.listen();

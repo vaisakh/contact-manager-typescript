@@ -1,10 +1,10 @@
-import {Application} from "express";
+import { Application } from "express";
 
 interface BaseServer {
-    app: Application
-    start(): void
-    stop(): void
-    listen(): void
+  app: Application;
+  start(): void;
+  stop(): void;
+  listen(): void;
 }
 
-export default BaseServer
+export default BaseServer;
