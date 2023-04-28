@@ -10,7 +10,7 @@ class App implements BaseApplication {
     this.app = express();
     this.router = express.Router();
 
-u    this.init();
+    this.init();
   }
 
   public getApp(): Express {
